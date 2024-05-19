@@ -25,8 +25,7 @@ config :rssletter, RssletterWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "WGYyaBvIh2d5fyddeQ0xGfu5CDXINq98hIpJEvIxfIsManLF3boTWyFLDVAY6urN",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:rssletter, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:rssletter, ~w(--watch)]}
+    esbuild: {Esbuild, :install_and_run, [:rssletter, ~w(--sourcemap=inline --watch)]}
   ]
 
 # ## SSL Support

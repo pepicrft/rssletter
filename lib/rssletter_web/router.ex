@@ -20,6 +20,12 @@ defmodule RssletterWeb.Router do
     get "/", PageController, :home
   end
 
+  scope "/", RssletterWeb do
+    pipe_through :api
+
+    post "/incoming", IncomingController, :create
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", RssletterWeb do
   #   pipe_through :api

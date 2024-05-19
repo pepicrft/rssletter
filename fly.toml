@@ -13,7 +13,7 @@ kill_signal = 'SIGTERM'
   release_command = '/app/bin/migrate'
 
 [env]
-  PHX_HOST = 'rssletter.fly.dev'
+  PHX_HOST = 'rssletter.me'
   PORT = '8080'
 
 [http_service]
