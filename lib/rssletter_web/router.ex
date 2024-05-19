@@ -17,7 +17,7 @@ defmodule RssletterWeb.Router do
   scope "/", RssletterWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", HomeLive
   end
 
   scope "/", RssletterWeb do

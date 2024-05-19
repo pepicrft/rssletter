@@ -1,3 +1,15 @@
+@import "https://unpkg.com/open-props";
+
 :root {
     font-family: "Valkyrie B", Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "Compita", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+h1 {
+
 }
