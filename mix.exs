@@ -58,7 +58,8 @@ defmodule Rssletter.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.2"},
-      {:appsignal, "~> 2.0"}
+      {:appsignal, "~> 2.0"},
+      {:appsignal_phoenix, "~> 2.0"}
     ]
   end
 
