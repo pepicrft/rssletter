@@ -1,6 +1,6 @@
-# RSSLetter
+# RSSLetter ✉️
 
-A service that turns newsletter subscriptions into RSS feeds.
+An open-source service that aggregates newsletters providing a single RSS feed.
 
 ## Services
 
