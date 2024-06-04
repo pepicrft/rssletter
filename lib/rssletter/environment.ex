@@ -4,6 +4,8 @@ defmodule Rssletter.Environment do
   """
   @env Mix.env()
 
+  def env, do: @env
+
   def secrets do
     Application.get_env(:rssletter, :secrets)[@env] || %{}
   end
