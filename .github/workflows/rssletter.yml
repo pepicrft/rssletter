@@ -1,0 +1,94 @@
+name: RSSLetter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: rssletter-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  MIX_ENV: test
+  MISE_EXPERIMENTAL: 1
+
+jobs:
+  test:
+    name: Test
+    runs-on: 'ubuntu-latest'
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+      - name: Restore Cache
+        uses: actions/cache@v3
+        id: mix-cache
+        with:
+          path: |
+            deps
+            _build
+            _site
+          key: mix-${{ hashFiles('mix.lock') }}
+      - name: Install dependencies
+        run: mix deps.get
+      - name: Create the database
+        run: mix ecto.create
+      # This is necessary because the migrations of Rails continue to be the source
+      # of truth for the current shape of the schema.
+      - name: Run tests
+        run: mix test
+  credo:
+    name: Credo
+    runs-on: 'ubuntu-latest'
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+      - name: Restore Cache
+        uses: actions/cache@v3
+        id: mix-cache
+        with:
+          path: |
+            deps
+            _build
+            _site
+          key: mix-${{ hashFiles('mix.lock') }}
+      - name: Install dependencies
+        run: mix deps.get
+      - name: Run Credo
+        run: mix credo
+  format:
+    name: Format
+    runs-on: 'ubuntu-latest'
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4 # v4
+      - uses: jdx/mise-action@v2
+      - name: Restore Cache
+        uses: actions/cache@v3
+        id: mix-cache
+        with:
+          path: |
+            deps
+            _build
+            _site
+          key: mix-${{ hashFiles('mix.lock') }}
+      - name: Install dependencies
+        run: mix deps.get
+      - name: Check format
+        run: mix format --check-formatted
