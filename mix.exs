@@ -52,7 +52,8 @@ defmodule Rssletter.MixProject do
       {:bandit, "~> 1.2"},
       {:appsignal, "~> 2.0"},
       {:appsignal_phoenix, "~> 2.0"},
-      {:encrypted_secrets, "~> 0.3.0"}
+      {:encrypted_secrets, "~> 0.3.0"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
 

@@ -1,5 +1,10 @@
 defmodule Rssletter.Environment do
+  @moduledoc ~S"""
+  This module provides an interface to access environment configuration exposed through environment variables or the encrypted credentials file.
+  """
   @env Mix.env()
+
+  def env, do: @env
 
   def secrets do
     Application.get_env(:rssletter, :secrets)[@env] || %{}

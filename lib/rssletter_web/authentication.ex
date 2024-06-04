@@ -1,4 +1,7 @@
 defmodule RssletterWeb.Authentication do
+  @moduledoc ~S"""
+  This module provides functionality to authenticate users.
+  """
   import Plug.Conn
 
   @current_user_key :current_user
