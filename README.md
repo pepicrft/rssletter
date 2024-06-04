@@ -1,4 +1,4 @@
-# rssletter
+# RSSLetter
 
 A service that turns newsletter subscriptions into RSS feeds.
 
